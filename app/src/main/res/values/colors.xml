@@ -8,4 +8,5 @@
     <color name="flatRed">#C0392B</color>
     <color name="transparent">#303030</color>
     <color name="tutorial_color1">#EE000000</color>
+    <color name="test_color">#FFFF00</color>
 </resources>
