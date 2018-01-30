@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relative_layout_timer">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:id="@+id/timerAndScrambleContainer"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/txtScramble"
+            android:text="F R B2 D L2 R' B R B R2 R' D2 F' R2 "/>
+        <!-- android:fontFamily="sans-serif-light -->
+
+        <com.jcancellier.cubetimer.Chronometer
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jChronometer"
+            android:fontFamily="sans-serif-thin"
+            android:text="00:00:00"
+            android:textSize="@dimen/chronometer_text_size" />
+        <!-- android:fontFamily="sans-serif-thin" -->
+    </LinearLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/timerToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_alignParentTop="true"
+        />
+</RelativeLayout>

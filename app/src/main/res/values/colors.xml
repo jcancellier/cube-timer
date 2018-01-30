@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/textTimer</color>
+    <color name="colorPrimaryDark">#444B54</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="textTimer">#F7D6B5</color>
+    <color name="flatGreen">#26A65B</color>
+    <color name="flatRed">#C0392B</color>
+    <color name="transparent">#303030</color>
+    <color name="tutorial_color1">#EE000000</color>
+</resources>

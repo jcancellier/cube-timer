@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Cube Timer</string>
+    <string name="title_timer">Cube Timer</string>
+    <string name="title_solves">Solves</string>
+    <string name="title_stats">Statistics</string>
+    <string name="stats_best_time">"Best: "</string>
+    <string name="stats_worst_time">"Worst: "</string>
+    <string name="no_solve_text">-----</string>
+    <string name="tutorial_1_confirm"><u><b>GOT IT</b></u></string>
+</resources>

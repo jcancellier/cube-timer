@@ -1,0 +1,12 @@
+<vector android:height="24dp" android:viewportHeight="512.0"
+    android:viewportWidth="512.0" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="@color/textTimer" android:pathData="M0,182h147.9v147.9h-147.9z"/>
+    <path android:fillColor="@color/textTimer" android:pathData="M182,0h147.9v147.9h-147.9z"/>
+    <path android:fillColor="@color/textTimer" android:pathData="M182,182h147.9v147.9h-147.9z"/>
+    <path android:fillColor="@color/textTimer" android:pathData="M182,364.1h147.9v147.9h-147.9z"/>
+    <path android:fillColor="@color/textTimer" android:pathData="M460.8,0h-96.7v147.9H512V51.2C512,23 489,0 460.8,0z"/>
+    <path android:fillColor="@color/textTimer" android:pathData="M364.1,182h147.9v147.9h-147.9z"/>
+    <path android:fillColor="@color/textTimer" android:pathData="M0,364.1V460.8C0,489 23,512 51.2,512h96.7V364.1H0z"/>
+    <path android:fillColor="@color/textTimer" android:pathData="M364.1,364.1V512H460.8c28.2,0 51.2,-23 51.2,-51.2v-96.7H364.1z"/>
+    <path android:fillColor="@color/textTimer" android:pathData="M51.2,0C23,0 0,23 0,51.2v96.7h147.9V0H51.2z"/>
+</vector>

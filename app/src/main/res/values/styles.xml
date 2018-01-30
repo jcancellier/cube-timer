@@ -1,0 +1,35 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorPrimaryDark</item>
+    </style>
+
+    <!-- actual one being used in manifest -->
+    <style name="JoshFlatUI" parent="Theme.AppCompat.NoActionBar" >
+        <!--
+        <item name="android:windowBackground">@color/colorPrimaryDark</item>
+        -->
+
+        <!--
+        <item name="android:colorBackground">#444B54</item>
+        -->
+
+        <!-- color for menu overflow icon -->
+        <item name="android:textColor">@color/textTimer</item>
+        <item name="android:textColorSecondary">@color/textTimer</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <!-- Style for Toolbar text-->
+    <style name="ToolbarTitleText">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <!-- <item name="android:fontFamily">sans-serif-light</item> -->
+
+        <item name="android:textSize">18sp</item>
+    </style>
+</resources>
