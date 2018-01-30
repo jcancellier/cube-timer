@@ -86,13 +86,14 @@ public class SolvesFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //create adapter and set recyclerView to that adapter
         solveAdapter = new SolveAdapter(solveList.get(puzzleIndex).getAllSolves());
         recyclerView.setAdapter(solveAdapter);
-        recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount()-1);
+
+        if(recyclerView.getAdapter().getItemCount() > 0)
+            recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount()-1);
         return rootView;
     }
 
