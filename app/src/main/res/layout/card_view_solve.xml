@@ -1,72 +1,75 @@
-<android.support.v7.widget.CardView
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/tools"
     android:id="@+id/cv"
     android:layout_margin="20dp"
     card_view:cardElevation="5dp"
     card_view:cardCornerRadius="10dp"
-    android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    >
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_alignParentTop="true"
+        android:id="@+id/cvOverflowMenu"
+        app:srcCompat="@drawable/ic_more_vert_black_24dp"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:paddingRight="16dp"
         android:paddingLeft="16dp"
-        >
+        android:paddingRight="16dp"
+        android:paddingTop="16dp">
 
 
         <TextView
-            android:layout_marginLeft="5dp"
+            android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/time"
             android:layout_alignParentTop="true"
-            android:textSize="35sp"
+            android:layout_marginLeft="5dp"
             android:text="00:34.67"
-
+            android:textSize="35sp"
             />
 
         <View
-            android:layout_width="match_parent"
             android:id="@+id/divider"
-            android:background="@color/textTimer"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/time"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:background="@color/textTimer"
 
             />
 
         <TextView
-            android:layout_marginLeft="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/date"
-            android:layout_below="@+id/divider"
-            android:layout_alignParentLeft="true"
-            android:textSize="15sp"
-            android:text="Today"
-            />
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/scramble"
-            android:layout_below="@+id/date"
             android:layout_alignParentLeft="true"
+            android:layout_below="@+id/divider"
+            android:layout_marginLeft="5dp"
+            android:text="Today"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/scramble"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/date"
             android:text="F R B2 D L2 R' B R B R2 R' D2 F' R2 f f f f f f f f f f f f f f f f f f f f f "
-            android:visibility="gone"
-            />
+            android:visibility="gone" />
 
     </RelativeLayout>
-
 </android.support.v7.widget.CardView>
 <!--
 <android.support.v7.widget.CardView
