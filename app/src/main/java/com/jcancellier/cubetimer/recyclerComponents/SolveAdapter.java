@@ -42,7 +42,7 @@ public class SolveAdapter extends RecyclerView.Adapter<SolveAdapter.SolveViewHol
         holder.vScramble.setText(solveInfo.getScramble());
 
         //Overflow menu for CardView
-        final PopupMenu popup = new PopupMenu(holder.vScramble.getContext(), holder.vImgButton, Gravity.RIGHT);
+        final PopupMenu popup = new PopupMenu(holder.vScramble.getContext(), holder.vImgButton, Gravity.END, R.attr.actionOverflowMenuStyle, 0);
         popup.inflate(R.menu.cardview_overflow_menu);
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
