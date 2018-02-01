@@ -40,6 +40,7 @@ public class SolveAdapter extends RecyclerView.Adapter<SolveAdapter.SolveViewHol
         holder.vTime.setText(solveInfo.getTime());
         holder.vDate.setText(solveInfo.getDate());
         holder.vScramble.setText(solveInfo.getScramble());
+        holder.vSolveNumber.setText(String.valueOf(position+1));
 
         //Overflow menu for CardView
         final PopupMenu popup = new PopupMenu(holder.vScramble.getContext(), holder.vImgButton, Gravity.END, R.attr.actionOverflowMenuStyle, 0);
@@ -79,8 +80,8 @@ public class SolveAdapter extends RecyclerView.Adapter<SolveAdapter.SolveViewHol
         protected TextView vTime;
         protected TextView vDate;
         protected TextView vScramble;
+        protected TextView vSolveNumber;
         protected ImageButton vImgButton;
-
 
         public SolveViewHolder(View v) {
             super(v);
@@ -89,6 +90,7 @@ public class SolveAdapter extends RecyclerView.Adapter<SolveAdapter.SolveViewHol
             vTime = v.findViewById(R.id.time);
             vDate = v.findViewById(R.id.date);
             vScramble = v.findViewById(R.id.scramble);
+            vSolveNumber = v.findViewById(R.id.solveNumber);
             vImgButton = v.findViewById(R.id.cvOverflowMenu);
         }
     }
