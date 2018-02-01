@@ -299,6 +299,7 @@ public class TimerFragment extends Fragment {
                 .withRectangleShape(true)
                 .setShapePadding(0)
                 .setTargetTouchable(true)
+                .setFadeDuration(500)
                 .show();
     }
 

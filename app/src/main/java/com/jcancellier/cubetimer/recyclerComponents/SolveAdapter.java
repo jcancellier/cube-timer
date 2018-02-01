@@ -34,7 +34,7 @@ public class SolveAdapter extends RecyclerView.Adapter<SolveAdapter.SolveViewHol
     }
 
     @Override
-    public void onBindViewHolder(SolveViewHolder holder, int position) {
+    public void onBindViewHolder(SolveViewHolder holder, final int position) {
         SolveInfo solveInfo = solveList.get(position);
 
         holder.vTime.setText(solveInfo.getTime());
@@ -49,6 +49,8 @@ public class SolveAdapter extends RecyclerView.Adapter<SolveAdapter.SolveViewHol
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.delete_solve:
+                        solveList.remove(position);
+                        notifyDataSetChanged();
                         return true;
                     case R.id.solve_details:
                         return true;
@@ -90,4 +92,6 @@ public class SolveAdapter extends RecyclerView.Adapter<SolveAdapter.SolveViewHol
             vImgButton = v.findViewById(R.id.cvOverflowMenu);
         }
     }
+
+    
 }
