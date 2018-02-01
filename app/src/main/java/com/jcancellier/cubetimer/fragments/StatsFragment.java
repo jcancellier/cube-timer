@@ -65,6 +65,8 @@ public class StatsFragment extends Fragment {
         bestTime.setText(solveList.get(puzzleIndex).getBestTime());
         worstTime.setText(solveList.get(puzzleIndex).getWorstTime());
 
+
+
         //Set custom Stats Toolbar
         ((AppCompatActivity) getActivity()).setSupportActionBar(myToolBar);
         myToolBar.setTitleTextAppearance(getActivity(), R.style.ToolbarTitleText);
