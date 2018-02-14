@@ -65,6 +65,8 @@ public class StatsFragment extends Fragment {
         bestTime.setText(solveList.get(puzzleIndex).getBestTime());
         worstTime.setText(solveList.get(puzzleIndex).getWorstTime());
 
+
+
         //Set custom Stats Toolbar
         ((AppCompatActivity) getActivity()).setSupportActionBar(myToolBar);
         myToolBar.setTitleTextAppearance(getActivity(), R.style.ToolbarTitleText);
@@ -75,8 +77,8 @@ public class StatsFragment extends Fragment {
         GraphView gv = rootView.findViewById(R.id.graph);
         GridLabelRenderer glr = gv.getGridLabelRenderer();
         glr.setPadding(32);
-
-
+        gv.getGridLabelRenderer().setLabelsSpace(10);
+        gv.getGridLabelRenderer().setHorizontalLabelsVisible(false);
 
         return rootView;
     }

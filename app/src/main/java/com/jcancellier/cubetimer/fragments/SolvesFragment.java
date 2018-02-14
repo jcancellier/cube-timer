@@ -86,13 +86,22 @@ public class SolvesFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //create adapter and set recyclerView to that adapter
         solveAdapter = new SolveAdapter(solveList.get(puzzleIndex).getAllSolves());
         recyclerView.setAdapter(solveAdapter);
-        recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount()-1);
+
+        if(recyclerView.getAdapter().getItemCount() > 0)
+            recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount()-1);
+
+        //Detect when items are deleted in order to update database
+        recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+                putSolvesToDB();
+            }
+        });
         return rootView;
     }
 
@@ -111,8 +120,6 @@ public class SolvesFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.delete_all){
-
-
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle("Confirm");
             builder.setMessage("Permanently delete all solves?");
@@ -124,15 +131,7 @@ public class SolvesFragment extends Fragment {
                     solveList.get(puzzleIndex).getAllSolves().clear();
                     solveAdapter.notifyDataSetChanged();
 
-                    ////////Put new solves to tinyDB/////////////////////////////////////////////////////
-                    ArrayList<Object> solveObjects = new ArrayList<Object>();
-
-                    for(SolveList a : solveList){
-                        solveObjects.add((Object)a);
-                    }
-
-                    tinyDB.putListObject("AllCubeSolves", solveObjects);
-                    /////////////////////////////////////////////////////////////////////////////////////
+                    putSolvesToDB();
                 }
             });
             builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -164,6 +163,14 @@ public class SolvesFragment extends Fragment {
         solveList.get(puzzleIndex).addSolve(si);
         Log.v("Solve size: ", String.format("%d", solveList.get(puzzleIndex).getAllSolves().size()));
 
+        putSolvesToDB();
+    }
+
+    public void scrollToListTop(){
+        recyclerView.smoothScrollToPosition(0);
+    }
+
+    private void putSolvesToDB(){
         ////////Put new solves to tinyDB/////////////////////////////////////////////////////
         ArrayList<Object> solveObjects = new ArrayList<Object>();
 
@@ -172,9 +179,6 @@ public class SolvesFragment extends Fragment {
         }
 
         tinyDB.putListObject("AllCubeSolves", solveObjects);
-    }
-
-    public void scrollToListTop(){
-        recyclerView.smoothScrollToPosition(0);
+        /////////////////////////////////////////////////////////////////////////////////////
     }
 }
