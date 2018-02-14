@@ -29,16 +29,16 @@ public class MainActivity extends AppCompatActivity implements Communicator{
     BottomBar bottomBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(null);   //null to prevent overlapping
         setContentView(R.layout.activity_main);
 
         tinyDB = new TinyDB(this);
 
         //if returning user: get last puzzle worked on by user
         //else (first time): set default puzzle
-        if(tinyDB.getInt("CubeSelected") != -1)
+        if (tinyDB.getInt("CubeSelected") != -1)
             currentPuzzle = tinyDB.getInt("CubeSelected");
-        else{
+        else {
             currentPuzzle = CubeID.THREEXTHREE.ordinal();
             tinyDB.putInt("CubeSelected", currentPuzzle);
         }
@@ -60,11 +60,15 @@ public class MainActivity extends AppCompatActivity implements Communicator{
         bottomBar.getBar().setBackgroundColor(getResources().getColor(R.color.transparent));
         bottomBar.setActiveTabColor(getResources().getColor(R.color.colorPrimaryDark));
 
-        //add fragments
         final FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().add(R.id.mainActivity, fragment3, "3").hide(fragment3).commit();
-        fm.beginTransaction().add(R.id.mainActivity, fragment2, "2").hide(fragment2).commit();
-        fm.beginTransaction().add(R.id.mainActivity,fragment1, "1").hide(fragment1).commit();
+
+        //add fragments (check if fragments exist before adding them)
+        //NOTE: fixes the case where there are overlapping fragments when activity is resumed
+        //if (fm.getFragments().isEmpty()){
+            fm.beginTransaction().add(R.id.mainActivity, fragment3, "3").hide(fragment3).commit();
+            fm.beginTransaction().add(R.id.mainActivity, fragment2, "2").hide(fragment2).commit();
+            fm.beginTransaction().add(R.id.mainActivity, fragment1, "1").hide(fragment1).commit();
+        //}
 
         //show timer fragment by default
         fm.beginTransaction().show(fragment1).commit();
@@ -75,41 +79,42 @@ public class MainActivity extends AppCompatActivity implements Communicator{
             @Override
             public void onMenuTabSelected(@IdRes int menuItemId) {
                 if(menuItemId == R.id.navigation_timer){
-                    if(active != fragment1)
-                        fm.beginTransaction().show(fragment1).commit();
-                    else
                         fm.beginTransaction().hide(active).show(fragment1).commit();
+                    //else
+                        //fm.beginTransaction().hide(active).show(fragment1).commit();
                     active = fragment1;
                     ///////////////////////////////////////////////////////////////
-                    fm.beginTransaction().hide(fragment2).hide(fragment3).commit();
+                    //fm.beginTransaction().hide(fragment2).hide(fragment3).commit();
                     ///////////////////////////////////////////////////////////////
                     // Set title bar
                     //fragment1.changeToolbar();
                 }
                 if(menuItemId == R.id.navigation_list){
-                    fm.beginTransaction().hide(active).show(fragment2).commit();
+                    fm.beginTransaction().hide(active).commit();
                     active = fragment2;
                     ///////////////////////////////////////////////////////////////
-                    fm.beginTransaction().hide(fragment1).hide(fragment3).commit();
+                    //fm.beginTransaction().hide(fragment1).hide(fragment3).commit();
                     ///////////////////////////////////////////////////////////////
                     Fragment frg = fm.findFragmentByTag("2");
                     final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     ft.detach(frg);
                     ft.attach(frg);
+                    ft.show(frg);
                     ft.commit();
                     //change toolbar
                     fragment2.changeToolbar();
                 }
                 if(menuItemId == R.id.navigation_stats){
-                    fm.beginTransaction().hide(active).show(fragment3).commit();
+                    fm.beginTransaction().hide(active).commit();
                     active = fragment3;
                     ///////////////////////////////////////////////////////////////
-                    fm.beginTransaction().hide(fragment2).hide(fragment1).commit();
+                    //fm.beginTransaction().hide(fragment2).hide(fragment1).commit();
                     ///////////////////////////////////////////////////////////////
                     Fragment frg = fm.findFragmentByTag("3");
                     final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     ft.detach(frg);
                     ft.attach(frg);
+                    ft.show(frg);
                     ft.commit();
                 }
             }
