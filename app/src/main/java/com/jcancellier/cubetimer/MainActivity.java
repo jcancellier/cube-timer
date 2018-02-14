@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements Communicator{
     BottomBar bottomBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(null);   //null to prevent overlapping
+        super.onCreate(null);   //make null to prevent overlapping
         setContentView(R.layout.activity_main);
 
         tinyDB = new TinyDB(this);
