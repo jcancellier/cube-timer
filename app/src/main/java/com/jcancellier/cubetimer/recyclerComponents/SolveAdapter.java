@@ -34,13 +34,15 @@ public class SolveAdapter extends RecyclerView.Adapter<SolveAdapter.SolveViewHol
     }
 
     @Override
-    public void onBindViewHolder(SolveViewHolder holder, final int position) {
+    public void onBindViewHolder(final SolveViewHolder holder, final int position) {
         SolveInfo solveInfo = solveList.get(position);
-
         holder.vTime.setText(solveInfo.getTime());
         holder.vDate.setText(solveInfo.getDate());
         holder.vScramble.setText(solveInfo.getScramble());
         holder.vSolveNumber.setText(String.valueOf(position+1));
+
+        //re-enable overflow menus after having previously disabled it when deleting item
+        holder.vImgButton.setEnabled(true);
 
         //Overflow menu for CardView
         final PopupMenu popup = new PopupMenu(holder.vScramble.getContext(), holder.vImgButton, Gravity.END, R.attr.actionOverflowMenuStyle, 0);
@@ -50,8 +52,16 @@ public class SolveAdapter extends RecyclerView.Adapter<SolveAdapter.SolveViewHol
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.delete_solve:
-                        solveList.remove(position);
-                        notifyDataSetChanged();
+                        //TODO: disable other item clicks until delete animation is finished
+
+
+                        //prevents user from re-clicking overflow menu after deleting it
+                        //holder.vImgButton.setEnabled(false);
+
+                        notifyItemRangeChanged(holder.getAdapterPosition(), solveList.size());
+                        solveList.remove(holder.getAdapterPosition());
+                        notifyItemRemoved(holder.getAdapterPosition());
+                        //notifyDataSetChanged();
                         return true;
                     case R.id.solve_details:
                         return true;
