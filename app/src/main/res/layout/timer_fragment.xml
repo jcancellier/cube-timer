@@ -20,7 +20,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:id="@+id/txtScramble"
-            android:text="F R B2 D L2 R' B R B R2 R' D2 F' R2 "/>
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/white"
+            android:text="D2 R' F U2 R L2 B R F' D2 F2 L' F' D' U2 F U2 L' R U D2 F2 R' U' F2"/>
         <!-- android:fontFamily="sans-serif-light -->
 
         <com.jcancellier.cubetimer.Chronometer
@@ -29,7 +31,9 @@
             android:id="@+id/jChronometer"
             android:fontFamily="sans-serif-thin"
             android:text="00:00:00"
-            android:textSize="@dimen/chronometer_text_size" />
+            android:textSize="@dimen/_70sdp"
+            />
+            <!--android:textSize="@dimen/chronometer_text_size" -->
         <!-- android:fontFamily="sans-serif-thin" -->
     </LinearLayout>
 

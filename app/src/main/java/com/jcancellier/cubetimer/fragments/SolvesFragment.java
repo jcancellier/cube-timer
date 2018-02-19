@@ -59,18 +59,7 @@ public class SolvesFragment extends Fragment {
         //set up solve list for each of the 4 current puzzles (2x2, 3x3, 4x4, 5x5)
         //solveList = new SolveList[CubeID.values().length];
 
-        //restore previous solves from all cubes///////
-        ArrayList<Object> playerObjects = tinyDB.getListObject("AllCubeSolves", SolveList.class);
-        solveList = new ArrayList<SolveList>();
-
-        for(Object objs : playerObjects){
-            solveList.add((SolveList)objs);
-        }
-
-        for(int i = 0; i < CubeID.values().length; i++){
-            solveList.add(new SolveList());
-        }
-        ///////////////////////////////////////////////
+        restoreSolvesFromDB();
 
         //set custom toolbar for solves tab
         myToolBar = rootView.findViewById(R.id.solvesToolbar);
@@ -88,12 +77,15 @@ public class SolvesFragment extends Fragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
+
         //create adapter and set recyclerView to that adapter
         solveAdapter = new SolveAdapter(solveList.get(puzzleIndex).getAllSolves());
         recyclerView.setAdapter(solveAdapter);
 
-        if(recyclerView.getAdapter().getItemCount() > 0)
-            recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount()-1);
+
+        scrollToListBottom();
+        //if(recyclerView.getAdapter().getItemCount() > 0)
+            //recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount()-1);
 
         //Detect when items are deleted in order to update database
         recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
@@ -170,6 +162,23 @@ public class SolvesFragment extends Fragment {
         recyclerView.smoothScrollToPosition(0);
     }
 
+    public void scrollToListBottom(){
+        if(recyclerView.getAdapter().getItemCount() > 0)
+            recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
+    }
+
+    //Implement in order to update view when calling FragmentTransaction show() method from Main Activity
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden){
+            puzzleIndex = comm.getCube();
+            solveAdapter = new SolveAdapter(solveList.get(puzzleIndex).getAllSolves());
+            recyclerView.setAdapter(solveAdapter);
+            scrollToListBottom();
+        }
+    }
+
     private void putSolvesToDB(){
         ////////Put new solves to tinyDB/////////////////////////////////////////////////////
         ArrayList<Object> solveObjects = new ArrayList<Object>();
@@ -180,5 +189,20 @@ public class SolvesFragment extends Fragment {
 
         tinyDB.putListObject("AllCubeSolves", solveObjects);
         /////////////////////////////////////////////////////////////////////////////////////
+    }
+
+    private void restoreSolvesFromDB(){
+        //restore previous solves from all cubes///////
+        ArrayList<Object> playerObjects = tinyDB.getListObject("AllCubeSolves", SolveList.class);
+        solveList = new ArrayList<SolveList>();
+
+        for(Object objs : playerObjects){
+            solveList.add((SolveList)objs);
+        }
+
+        for(int i = 0; i < CubeID.values().length; i++){
+            solveList.add(new SolveList());
+        }
+        ///////////////////////////////////////////////
     }
 }

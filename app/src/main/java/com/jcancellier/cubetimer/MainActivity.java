@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements Communicator{
         //}
 
         //show timer fragment by default
-        fm.beginTransaction().show(fragment1).commit();
+        fm.beginTransaction().show(fragment1).hide(fragment2).hide(fragment3).commit();
         active = fragment1;
 
         //switch fragments based on bottombar icon click
@@ -97,10 +97,10 @@ public class MainActivity extends AppCompatActivity implements Communicator{
                     ///////////////////////////////////////////////////////////////
                     Fragment frg = fm.findFragmentByTag("2");
                     final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.detach(frg);
-                    ft.attach(frg);
-                    ft.show(frg);
-                    ft.commit();
+                    //ft.replace(R.id.mainActivity, fragment2).commit();
+                    fm.beginTransaction().show(active).commit();
+                    //ft.show(frg);
+                    //ft.commit();
                     //change toolbar
                     fragment2.changeToolbar();
                 }
@@ -150,7 +150,6 @@ public class MainActivity extends AppCompatActivity implements Communicator{
         fragment1.newScramble();
         fragment1.resetChronometer();
     }
-
 
     // Set the color for the active tab. Ignored on mobile when there are more than three tabs.
         //bottomBar.setActiveTabColor(R.color.flatRed);
