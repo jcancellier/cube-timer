@@ -56,7 +56,7 @@ public class SolveAdapter extends RecyclerView.Adapter<SolveAdapter.SolveViewHol
 
 
                         //prevents user from re-clicking overflow menu after deleting it
-                        //holder.vImgButton.setEnabled(false);
+                        holder.vImgButton.setEnabled(false);
 
                         notifyItemRangeChanged(holder.getAdapterPosition(), solveList.size());
                         solveList.remove(holder.getAdapterPosition());
