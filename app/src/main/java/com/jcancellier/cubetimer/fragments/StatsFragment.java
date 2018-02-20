@@ -76,7 +76,7 @@ public class StatsFragment extends Fragment {
         //Set up GraphView
         GraphView gv = rootView.findViewById(R.id.graph);
         GridLabelRenderer glr = gv.getGridLabelRenderer();
-        glr.setPadding(32);
+        glr.setPadding(getResources().getDimensionPixelSize(R.dimen._15sdp));
         gv.getGridLabelRenderer().setLabelsSpace(10);
         gv.getGridLabelRenderer().setHorizontalLabelsVisible(false);
 
