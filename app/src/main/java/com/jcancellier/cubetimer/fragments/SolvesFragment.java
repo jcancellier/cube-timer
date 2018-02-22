@@ -167,7 +167,7 @@ public class SolvesFragment extends Fragment {
             recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
     }
 
-    //Implement in order to update view when calling FragmentTransaction show() method from Main Activity
+    //Implement in order to update view when calling FragmentTransaction show() and hide() method from Main Activity
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
@@ -176,6 +176,9 @@ public class SolvesFragment extends Fragment {
             solveAdapter = new SolveAdapter(solveList.get(puzzleIndex).getAllSolves());
             recyclerView.setAdapter(solveAdapter);
             scrollToListBottom();
+        }
+        else{
+            putSolvesToDB();
         }
     }
 
