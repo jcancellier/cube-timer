@@ -32,4 +32,10 @@
 
         <item name="android:textSize">18sp</item>
     </style>
+
+
+    <!-- Style for splash screen -->
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background</item>
+    </style>
 </resources>

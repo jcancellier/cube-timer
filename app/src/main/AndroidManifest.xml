@@ -4,11 +4,23 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_cube_app_icon"
+        android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_cube_app_icon"
+        android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/JoshFlatUI">
+
+        <activity
+            android:name=".splash.SplashActivity"
+            android:theme="@style/SplashTheme"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
         <activity
             android:name="com.jcancellier.cubetimer.MainActivity"
             android:label="@string/app_name"
@@ -21,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
